@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: auction_postgre
+    environment:
+      POSTGRES_USER: auction_user
+      POSTGRES_PASSWORD: auction_password
+      POSTGRES_DB: auction_db
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - auction_network
+
+  auction_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: auction_app
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: auction_user
+      DB_PASSWORD: auction_password
+      DB_NAME: auction_db
+      CONFIG_PATH: /app/config.toml
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - auction_network
+
+networks:
+  auction_network:
+    driver: bridge
+
+volumes:
+  pg_data:
+    driver: local
+
+
