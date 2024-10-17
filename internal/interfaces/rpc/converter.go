@@ -8,11 +8,13 @@ import (
 
 func NewDomainLotFromRequest(req *v1.CreateLotRequest) domain.Lot {
 	userID, _ := strconv.Atoi(req.UserId)
+	closedAt := req.ClosingTime.AsTime()
 	return domain.Lot{
 		Title:      req.Title,
 		StartPrice: int(req.StartPrice),
 		Step:       int(req.Step),
 		UserID:     userID,
+		ClosedAt:   &closedAt,
 	}
 }
 

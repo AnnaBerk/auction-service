@@ -27,15 +27,15 @@
   "title": "Название лота",
   "start_price": 1000,
   "step": 100,
-  "user_id": 1
+  "user_id": 1, 
+   "closing_time": "2024-10-17T10:00:00Z"
 }
 ```
 ## Пример ответа:
 
 ```json
 {
-  "lot_id": 123,
-  "message": "Лот успешно создан."
+  "lot_id": 123
 }
 ```
 ### Пополнить Баланс
@@ -57,8 +57,7 @@
 ```json
 
 {
-"new_balance": 15000,
-"message": "Баланс успешно пополнен."
+"message": "Balance refilled successfully"
 }
 ```
 Разместить Ставку
@@ -82,8 +81,7 @@
 ```json
 
 {
-"bid_id": 456,
-"message": "Ставка успешно размещена."
+"message": "Bid placed"
 }
 ```
 
